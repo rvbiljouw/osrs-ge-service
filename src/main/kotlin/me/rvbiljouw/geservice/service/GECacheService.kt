@@ -48,7 +48,11 @@ class GECacheService {
     }
 
     fun getOrLoadItemSummary(id: Short): GEItemSummary? {
-        return summaryCache.get(id)
+        try {
+            return summaryCache.get(id)
+        } catch (icl: CacheLoader.InvalidCacheLoadException) {
+            return null
+        }
     }
 
 }
